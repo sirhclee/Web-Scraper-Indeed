@@ -2,21 +2,11 @@
 import requests
 from bs4 import BeautifulSoup
 from urllib.request import urlopen
-
 import cloudscraper 
 
-#import tkinter as tk
 from tkinter import Tk, Text, TOP, BOTH, X, N, LEFT, RIGHT, StringVar
 from tkinter.ttk import Frame, Label, Entry, Button
-#import tkinter as tk
 
-
-
-
-
-
-## Remote
-#URL = "https://www.indeed.com/jobs?q=" + "engineer" + "&l=" + "Boston%2C%20MA" + "&sc=0kf%3Aattr(DSQF7)%3B&vjk=0bfb9182bc823104"
 class User_Input(Frame):
 	def __init__(self):
 		super().__init__()
@@ -53,9 +43,8 @@ class User_Input(Frame):
 
 class Indeed_Scraper():
 	def __init__(self, job, loc):
-		scraper = cloudscraper.create_scraper(delay=10,   browser={'custom': 'ScraperBot/1.0',})
+		scraper = cloudscraper.create_scraper(delay=10,   browser={'custom': 'chrome','platform':'windows', 'mobile':False})
 
-		#location = "Boston%2C%20MA"
 		location = loc.replace(" ", "%")
 
 		URL = "https://www.indeed.com/jobs?q=" + job + "&l=" + location 
@@ -92,7 +81,6 @@ class Indeed_Scraper():
 						print('TBD')
 
 					link_string = links[0]["href"]
-					#print(link_string)
 					#print('https://www.indeed.com' + link_string)
 
 					print() 
@@ -104,9 +92,6 @@ class Indeed_Scraper():
 def main():
 	ROOT = Tk()
 	ROOT.geometry("300x150+400+400")
-
-	#ROOT.withdraw() ##Creates window
-	#USER_INP = simpledialog.askstring(title="Indeed Scraper", prompt="Position:") ## User input
 	Input = User_Input()	
 
 	text = StringVar()
@@ -117,6 +102,3 @@ def main():
 	Indeed_Scraper(Input.output1,Input.output2) ## Input.output1
 
 main()
-#if __name__ =='__main__':
-	#m
-#print(res)
